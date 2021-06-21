@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/RockKeeper/go-rpi-rgb-led-matrix"
 	"github.com/disintegration/imaging"
-	"github.com/mcuadros/go-rpi-rgb-led-matrix"
 )
 
 var (
