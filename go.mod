@@ -1,4 +1,4 @@
-module github.com/RockKeeper/go-rpi-rgb-led-matrix
+module github.com/RockKeeper/go-rpi-rgb-led-matrix.v1
 
 go 1.16
 
