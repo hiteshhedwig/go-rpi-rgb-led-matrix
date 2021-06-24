@@ -43,7 +43,7 @@ import (
 	"os"
 	"unsafe"
 
-	"github.com/RockKeeper/go-rpi-rgb-led-matrix/emulator"
+	"gopkg.in/RockKeeper/go-rpi-rgb-led-matrix.v1/emulator"
 )
 
 // DefaultConfig default WS281x configuration

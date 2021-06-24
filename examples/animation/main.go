@@ -6,8 +6,8 @@ import (
 	"image/color"
 	"time"
 
-	"github.com/RockKeeper/go-rpi-rgb-led-matrix"
 	"github.com/fogleman/gg"
+	"gopkg.in/RockKeeper/go-rpi-rgb-led-matrix.v1"
 )
 
 var (

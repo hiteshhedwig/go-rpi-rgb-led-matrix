@@ -5,7 +5,7 @@ import (
 	"image/color"
 	"net/rpc"
 
-	"github.com/RockKeeper/go-rpi-rgb-led-matrix"
+	"gopkg.in/RockKeeper/go-rpi-rgb-led-matrix.v1"
 )
 
 func init() {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"image/color"
 
-	"github.com/RockKeeper/go-rpi-rgb-led-matrix"
+	"gopkg.in/RockKeeper/go-rpi-rgb-led-matrix.v1"
 )
 
 var (
