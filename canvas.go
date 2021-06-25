@@ -1,6 +1,7 @@
 package rgbmatrix
 
 import (
+	"github.com/pbnjay/pixfont"
 	"image"
 	"image/color"
 	"image/draw"
@@ -48,6 +49,15 @@ func (c *Canvas) At(x, y int) color.Color {
 // Set set LED at position x,y to the provided 24-bit color value
 func (c *Canvas) Set(x, y int, color color.Color) {
 	c.m.Set(c.position(x, y), color)
+}
+
+// DrawText at position x,y to the provided 24-bit color value
+func (c *Canvas) DrawText(x, y int, text string, col color.RGBA) {
+	img := image.NewRGBA(image.Rect(0, 0, 64, 64))
+
+	pixfont.DrawString(img, x, y, text, col)
+	draw.Draw(c, c.Bounds(), img, image.Point{}, draw.Over)
+	//c.Render()
 }
 
 func (c *Canvas) position(x, y int) int {

@@ -1,7 +1,9 @@
 package rgbmatrix
 
 import (
+	"github.com/pbnjay/pixfont"
 	"image"
+	"image/color"
 	"image/draw"
 	"image/gif"
 	"io"
@@ -28,6 +30,18 @@ func NewToolKit(m Matrix) *ToolKit {
 	return &ToolKit{
 		Canvas: NewCanvas(m),
 	}
+}
+
+// DrawText at position x,y to the provided 24-bit color value
+func (tk *ToolKit) DrawText(x, y int, text string, col color.RGBA, delay time.Duration) error {
+	start := time.Now()
+	defer func() { time.Sleep(delay - time.Since(start)) }()
+
+	img := image.NewRGBA(image.Rect(0, 0, 64, 64))
+
+	pixfont.DrawString(img, x, y, text, col)
+	draw.Draw(tk.Canvas, tk.Canvas.Bounds(), img, image.Point{}, draw.Over)
+	return nil
 }
 
 // PlayImage draws the given image during the given delay

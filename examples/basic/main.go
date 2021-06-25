@@ -2,15 +2,14 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"image/color"
-
 	"gopkg.in/RockKeeper/go-rpi-rgb-led-matrix.v1"
+	"image/color"
+	"time"
 )
 
 var (
-	rows                     = flag.Int("led-rows", 32, "number of rows supported")
-	cols                     = flag.Int("led-cols", 32, "number of columns supported")
+	rows                     = flag.Int("led-rows", 64, "number of rows supported")
+	cols                     = flag.Int("led-cols", 64, "number of columns supported")
 	parallel                 = flag.Int("led-parallel", 1, "number of daisy-chained panels")
 	chain                    = flag.Int("led-chain", 2, "number of displays daisy-chained")
 	brightness               = flag.Int("brightness", 100, "brightness (0-100)")
@@ -36,16 +35,28 @@ func main() {
 	fatal(err)
 
 	c := rgbmatrix.NewCanvas(m)
-	defer c.Close()
 
-	bounds := c.Bounds()
-	for x := bounds.Min.X; x < bounds.Max.X; x++ {
-		for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
-			fmt.Println("x", x, "y", y)
-			c.Set(x, y, color.RGBA{255, 0, 0, 255})
-			c.Render()
-		}
+	start := time.Now()
+	defer func() {
+		time.Sleep((time.Second * 30) - time.Since(start))
+		c.Close()
+	}()
+
+	col := color.RGBA{
+		R: 150,
+		G: 1,
+		B: 255,
+		A: 255,
 	}
+	c.DrawText(1, 1, "Hello", col)
+	c.DrawText(1, 10, "Hello", col)
+	c.DrawText(1, 20, "Hello", col)
+	c.DrawText(1, 30, "Hello", col)
+	c.DrawText(1, 40, "Hello", col)
+	c.DrawText(1, 50, "Hello", col)
+
+	c.Render()
+
 }
 
 func init() {
